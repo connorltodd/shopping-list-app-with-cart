@@ -36,7 +36,7 @@ class ProductList extends React.Component {
               .includes(this.state.productSearchValue.toLowerCase())
           )
           .map((product) => (
-            <Product {...product} />
+            <Product {...product} addProductToCart />
           ))}
       </div>
     );
