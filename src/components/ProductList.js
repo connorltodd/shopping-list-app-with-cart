@@ -5,6 +5,7 @@ import Product from "./Product";
 class ProductList extends React.Component {
   state = {
     products: [],
+    productSearchValue: "",
   };
 
   componentDidMount() {
@@ -17,12 +18,26 @@ class ProductList extends React.Component {
       .then((response) => this.setState({ products: response.data }));
   };
 
+  searchProductHandler = (event) => {
+    this.setState({ productSearchValue: event.target.value });
+  };
+
   render() {
     return (
       <div>
-        {this.state.products.map((product) => (
-          <Product {...product} />
-        ))}
+        <input
+          placeholder="Search for a product"
+          onChange={this.searchProductHandler}
+        />
+        {this.state.products
+          .filter((product) =>
+            product.title
+              .toLowerCase()
+              .includes(this.state.productSearchValue.toLowerCase())
+          )
+          .map((product) => (
+            <Product {...product} />
+          ))}
       </div>
     );
   }
