@@ -8,7 +8,7 @@ function CartList(props) {
     <div>
       <h1>Cart List</h1>
       {cartProducts.map((cartProduct) => (
-        <Product {...cartProduct} />
+        <Product {...cartProduct} removeProductFromCart />
       ))}
     </div>
   );
